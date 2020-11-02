@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="p-fluid forms-grid" style="margin: 1em 0;">
+      <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main-register">
+            <form *ngIf="active" novalidate [formGroup]="userForm" (ngSubmit)="onSubmit()">
+              <div style="height:60px"></div>
+              <div class="col-md-12">
+                <span class="p-float-label">            
+                  <input inputId="userName" formControlName="userName" ng-pattern ="^[a-zA-Z]+$" type="text" pInputText/>
+                  <label for="userName">Name</label>
+                </span>
+                <div *ngIf="submitted && ( f.userName.errors  || f.userName.touched )" class="alert">
+                  <div *ngIf="submitted && f.userName.errors?.required">
+                    Name is required
+                  </div>
+                  <div *ngIf="submitted && f.userName.errors?.pattern">
+                    Name must be alphabets
+                  </div>
+                </div>
+                <div style="height:30px"></div>
+                <div class="p-float-label">
+                    <input inputId="userAge" formControlName="userAge" type="text" ng-pattern ="^[0-9]+$" pInputText />
+                    <label for="userAge">Age</label>
+                </div>
+                <div *ngIf="submitted && ( f.userAge.errors  || f.userAge.touched )" class="alert">
+                  <div *ngIf="submitted && f.userAge.errors?.required">
+                    Age is required
+                  </div>
+                  <div *ngIf="submitted && f.userAge.errors?.maxlength">
+                    Age Max Length is 3
+                  </div>
+                  <div *ngIf="submitted && f.userAge.errors?.pattern">
+                    Age must be integer
+                  </div>
+                </div>
+                <div style="height:30px"></div>
+                <div class="p-field-radiobutton">
+                  <p-radioButton formControlName="userGender" name="userGender" value="Male" [(ngModel)]="selectedValue" inputId="userGenderMale"></p-radioButton>
+                  <label for="userGenderMale" style="margin-left:15px;"> Male </label>
+                  <p-radioButton formControlName="userGender" name="userGender" value="Female" [(ngModel)]="selectedValue" inputId="userGenderFemale"></p-radioButton>
+                  <label for="userGenderFemale" style="margin-left:15px;">Female</label>
+                </div>                        
+                <div class="alert" *ngIf="submitted && (f.userGender.errors  || f.userGender.touched)">
+                  <div *ngIf="submitted && f.userGender.errors?.required">
+                    Gender is required
+                  </div>
+                </div>
+                <div style="height:30px"></div>
+                <div class="p-float-label">
+                  <input inputId="userMobile" name="userMobile" formControlName="userMobile" ng-pattern ="^[0-9]+$" type="text" placeholder="Mobile" pInputText  />
+                  <label for="userMobile">Mobile</label>
+                </div>
+                <div *ngIf="submitted && ( f.userMobile.errors  || f.userMobile.touched )" class="alert">
+                  <div *ngIf="submitted && f.userMobile.errors?.required">
+                    Mobile is required
+                  </div>
+                  <div *ngIf="submitted && f.userMobile.errors?.maxlength">
+                    Mobile Max Length is 10
+                  </div>
+                  <div *ngIf="submitted && f.userMobile.errors?.pattern">
+                    Mobile must be integer
+                  </div>
+                </div>              
+                <div style="height:30px"></div>
+                <div class="p-float-label">
+                  <input inputId="userEmail" name="userEmail" formControlName="userEmail" type="text" pInputText />
+                  <label for="userEmail">Email</label>
+                </div>
+                <div *ngIf="submitted && ( f.userEmail.errors  || f.userEmail.touched )" class="alert">
+                    <div *ngIf="submitted && f.userEmail.errors?.required">
+                        Email is required
+                    </div>
+                    <div *ngIf="submitted && f.userEmail.errors?.email">
+                        Enter a valid email Id
+                    </div>
+                </div>
+                <div style="height:30px"></div>
+                <div class="p-field">
+                  <p-dropdown [options]="userArea" formControlName="userArea" [(ngModel)]="selectedArea" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+                </div>
+                <div *ngIf="submitted && (f.userArea.errors || f.userArea.touched)" class="alert">
+                    <div *ngIf="submitted && f.userArea.errors?.required">
+                      Area Code is required
+                    </div>
+                </div>
+                <div class="col-md-12 p-3">
+                  <div class="alert alert-success text-center" role="alert" id="success_msg" style="color:black;display: none;">
+                    <h4>Form Submitted Successfully</h4>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-btn d-flex justify-content-center">
+                      <div class="col-md-3 col-sm-6 m-3">
+                        <button pButton pRipple type="submit" label="Submit" color="Primary" class="p-button-raised"></button>
+                      </div>
+                      <div class="col-md-3 col-sm-6 m-3">
+                        <button pButton pRipple type="reset" label="Warning" color="Warning" class="p-button-warning"></button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

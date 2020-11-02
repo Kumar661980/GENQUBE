@@ -1,0 +1,6 @@
+<div>
+    <h1>Parent Component</h1>
+    <span><b>Value emitted from child component :</b></span> 
+    {{ valueEmittedFromChildComponent }}
+    <app-child1 (buttonClicked)="parentEventHandlerFunction($event)"></app-child1>
+</div>
